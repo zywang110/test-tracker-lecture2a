@@ -18,37 +18,23 @@ class Tasks {
     }
 
     addTask(name: string, description: string, status: boolean, hours: number) {
-        if (this.tasks.has(name)) {
-            return;
-        }
-        this.tasks.set(name, new Task(name, description, status, hours));
+        // add the task if a task with the same name does not exist
     }
 
     getTasks(): Task[] {
-        let result = []
-        for (let task of this.tasks.values()) {
-            result.push(task)
-        }
-        return result;
+        //return a list of all the tasks
     }
 
     getTask(name: string): Task | undefined {
-        return this.tasks.get(name);
+        // return the task if it exists
     }
 
     deleteTask(name: string) {
-        if (this.tasks.has(name)) {
-            this.tasks.delete(name);
-        }
+        // remove the task if it exists
     }
 
     updateTask(name: string, description: string, status: boolean, hours: number) {
-        const task = this.getTask(name);
-        if (task) {
-            task.description = description;
-            task.status = status;
-            task.hours = hours;
-        }
+        // update the task if it exists
     }
 }
 
