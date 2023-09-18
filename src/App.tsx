@@ -17,7 +17,7 @@ function App() {
   const [taskCount, setTaskCount] = React.useState(0);
 
   React.useEffect(() => {
-    setTaskCount(tasks.getTasks().length);
+    setTaskCount(tasks.getTasks().keys.length);
   }, []);
 
 

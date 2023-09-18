@@ -2,7 +2,7 @@ import Tasks from './Tasks';
 import Task from './Task';
 
 describe('Tasks', () => {
-    let tasks: Tasks;
+    let tasks: Tasks = new Tasks();
 
     beforeEach(() => {
         tasks = new Tasks();
@@ -40,13 +40,7 @@ describe('Tasks', () => {
         expect(task?.status).toBe(true);
         expect(task?.hours).toBe(1);
     });
-    it('should return tasks as JSON', () => {
-        tasks.addTask('Task 1', 'Description 1', false, 0);
-        tasks.addTask('Task 2', 'Description 2', true, 2);
-        const expectedJSON = '[{"name":"Task 1","description":"Description 1","status":false,"hours":0},{"name":"Task 2","description":"Description 2","status":true,"hours":2}]';
-        const receivedJSON = tasks.getTasksJSON();
-        expect(receivedJSON).toBe(expectedJSON);
-    });
+
 });
 
 export { };

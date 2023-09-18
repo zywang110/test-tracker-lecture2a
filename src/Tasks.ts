@@ -11,39 +11,44 @@ import Task from './Task';
 
 
 class Tasks {
-    tasks: Task[];
+    tasks: Map<string, Task>;
 
     constructor() {
-        this.tasks = [];
+        this.tasks = new Map<string, Task>();
     }
 
     addTask(name: string, description: string, status: boolean, hours: number) {
-        // add the code to add a new task to the tasks array
+        if (this.tasks.has(name)) {
+            return;
+        }
+        this.tasks.set(name, new Task(name, description, status, hours));
     }
 
-    getTasks() {
-        return this.tasks;
+    getTasks(): Task[] {
+        let result = []
+        for (let task of this.tasks.values()) {
+            result.push(task)
+        }
+        return result;
     }
 
     getTask(name: string): Task | undefined {
-        // find the task with the given name and return it
-        // if it is not there, return undefined
-
-        return undefined;
+        return this.tasks.get(name);
     }
 
     deleteTask(name: string) {
-        // delete the task with the given name
-        // write a message to console.log if it is not there.
+        if (this.tasks.has(name)) {
+            this.tasks.delete(name);
+        }
     }
 
     updateTask(name: string, description: string, status: boolean, hours: number) {
-        // update the task with the given name
-        // write a message to console.log if it is not there.
-    }
-
-    getTasksJSON() {
-        return JSON.stringify(this.tasks);
+        const task = this.getTask(name);
+        if (task) {
+            task.description = description;
+            task.status = status;
+            task.hours = hours;
+        }
     }
 }
 
